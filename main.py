@@ -30,7 +30,7 @@ def analyze_code(data: CodeData):
                 "Content-Type": "application/json"
             },
             json={
-           "model": "llama-3.1-8b-instant",
+          "model": "gemma2-9b-it",
 
                 "messages": [
                     {"role": "system", "content": "You are an expert code reviewer."},
