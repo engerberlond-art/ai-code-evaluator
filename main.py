@@ -1,4 +1,4 @@
-import os
+ import os
 import time
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
@@ -18,7 +18,6 @@ def home():
 def analyze_code(data: CodeData):
     start_time = time.time()
     
-    # استبدل هذا المفتاح بمفتاح Groq الخاص بك أو اجعله يقرأ من متغيرات البيئة
     api_key = os.environ.get("GROQ_API_KEY", "YOUR_GROQ_API_KEY")
     
     prompt = f"Review the following {data.language} code, find any bugs, and suggest improvements:\n\n{data.code}"
@@ -31,8 +30,8 @@ def analyze_code(data: CodeData):
                 "Content-Type": "application/json"
             },
             json={
-                "model":  "llama-3.3-70b-versatile",
-
+                "model": "llama-3.3-70b-versatile",
+                "messages": [
                     {"role": "system", "content": "You are an expert code reviewer."},
                     {"role": "user", "content": prompt}
                 ],
